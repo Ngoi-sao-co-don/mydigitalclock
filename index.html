@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/fonts-icons/themify-icons/themify-icons.css">
+</head>
+<body>
+    <div class="expand">
+        <div class="dynamic-island js-dynamic-island">
+            <div class="container">
+                <div class="in-function ls">
+                    <button class="icon"><i class="ti-apple"></i></button>
+                </div>
+                <div class="in-function alarm">
+                    <button class="icon" onclick="response(alarm)"><i class="ti-alarm-clock"></i></button>
+                    <div class="input-time">
+                        <audio class="sound">
+                            <source src="./assets/audio/huanhoahong.mp3" type="audio/mpeg">
+                        </audio>
+                        <input type="number" class="alarm-hour time" placeholder="Nhập giờ">
+                        <input type="number" class="alarm-minute time" placeholder="Nhập phút">
+                        <button class="set-time">Đặt</button>
+                        <button style="background-color: red;" class="turn-off-alarm">Tắt</button>
+                        <button class="exit" style="width:30%; background-color:green" onclick="recovery()">Thoát</button>
+                        <div class="sound-change">
+                            <button class="btn-sound-change" onclick="SoundChange()">Đổi nhạc chuông</button>
+                        </div>
+                    </div>
+                    <div class="sound-in4">
+                        <input type="text" class="sound-link" placeholder="link">
+                        <button class="save" onclick="SoundChangeSave()">Lưu</button>
+                        <button class="exit" style="width:30%; background-color:green" onclick="recovery()">Thoát</button>
+                    </div>
+               </div>
+               <div class="in-function music">
+                    <button class="icon" onclick="response(music)"><i class="ti-music-alt"></i></button>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div class="clock">
+        <div class="time hour">00</div>
+        <div class="time minute">00</div>
+        <div class="time second">00</div>
+    </div>
+    <script>
+    // ĐÂY LÀ VÙNG KHAI BÁO BIẾN
+        var dynamic_island=document.querySelector('.js-dynamic-island');
+        var icons=document.querySelectorAll('.icon');
+        var alarm=document.querySelector('.alarm');
+        var music=document.querySelector('.music');
+        var infunction=document.querySelectorAll('.in-function');
+        var inputTime=document.querySelector('.input-time');
+        var setTime=document.querySelector('.set-time');
+        var to_alarm=document.querySelector('.turn-off-alarm');
+        var alarmHour=document.querySelector('.alarm-hour');
+        var alarmMinute=document.querySelector('.alarm-minute');
+        var sound=document.querySelector('.sound');
+        var exit=document.querySelector('.exit');
+        var soundLink=document.querySelector('.sound-link');
+        var soundIn4=document.querySelector('.sound-in4');
+        var ls=document.querySelector('.ls');
+        var btnSoundChange=document.querySelector('.btn-sound-change');
+    // ===============================
+
+    // ĐÂY LÀ VÙNG DÀNH CHO HÀM CÁC LOẠI
+        function appear(arrayName, className){
+            for(let i=0;i<arrayName.length;i++){
+                arrayName[i].classList.add(className);
+            }
+        }
+        dynamic_island.addEventListener("mouseover", function(){setTimeout(appear, 300, icons, "open")});
+        function disappear(arrayName, className){
+            for(let i=0;i<arrayName.length;i++){
+                if(arrayName[i]!==arrayName[0])
+                {
+                    arrayName[i].classList.remove(className);
+                }
+                else if(arrayName[i]==arrayName[0])
+                {
+                    var do_timeout = function(){
+                        arrayName[0].classList.remove(className);
+                    };
+                    setTimeout(do_timeout, 480000);
+                }
+            }
+        }
+        dynamic_island.addEventListener("mouseout", function(){setTimeout(disappear, 300, icons, "open")});
+        function response(varName){
+            switch(varName){
+                case alarm:
+                    dynamic_island.classList.add("oversize");
+                    for(let i=0;i<icons.length;i++){
+                        icons[i].classList.add("remove");
+                    }
+                    var do_timeout = function(){
+                        inputTime.classList.add("open");
+                    };
+                    setTimeout(do_timeout, 400);
+                    var count;
+                    setTime.addEventListener("click",ring);
+                    setTime.addEventListener("click",function(){count=setInterval(ring,1000);});
+                    to_alarm.addEventListener("click",function(){sound.pause();clearInterval(count);});
+                    soundChange.addEventListener("click",SoundChange);
+                    break;
+                case music:
+                    dynamic_island.classList.add("oversize");
+                    break;
+            }
+        }
+
+        function ring(){
+            var hh_now=new Date().getHours();
+            var mn_now=new Date().getMinutes();
+            if(alarmHour.value==hh_now&&alarmMinute.value==mn_now)
+            {
+                sound.play();
+                dynamic_island.classList.add("oversize");
+                var do_timeout = function(){
+                    inputTime.classList.add("open");
+                };
+                setTimeout(do_timeout, 400);
+            }
+        }
+         
+        function SoundChange(){
+            inputTime.classList.remove("open");
+            soundIn4.classList.add("open");
+        }
+        function SoundChangeSave(){
+            var link=soundLink.value;
+            sound.setAttribute('src', "./assets/audio/"+link+".mp3");
+        }
+        function recovery(){
+            dynamic_island.classList.remove("oversize");
+            for(let i=0;i<icons.length;i++){
+                icons[i].classList.remove("remove");
+            }
+            inputTime.classList.remove("open");
+            soundIn4.classList.remove("open");
+        }
+        // ===============================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var hh=document.querySelector('.hour');
+        var mn=document.querySelector('.minute');
+        var sc=document.querySelector('.second');
+        setInterval(Clock,1000);
+        function Clock(){
+            var hh_now=new Date().getHours();
+            var mn_now=new Date().getMinutes();
+            var sc_now=new Date().getSeconds();
+            hh.innerHTML=("0"+hh_now).slice(-2);
+            mn.innerHTML=("0"+mn_now).slice(-2);
+            sc.innerHTML=("0"+sc_now).slice(-2);
+        }
+    </script>
+</body>
+</html>

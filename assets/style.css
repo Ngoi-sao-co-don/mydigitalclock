@@ -1,0 +1,242 @@
+*{
+    box-sizing: border-box;
+}
+
+.open{
+    display:inline-block!important;
+}
+
+.remove{
+    display: none!important;
+}
+
+.oversize{
+    width: 250px!important;
+    height: 250px!important;
+    transition-duration: 0.4s;
+}
+
+::placeholder{
+    color: orange!important;
+}
+
+html{
+    background: url("./img/Hinh-nen-Full-HD-1080-cho-may-tinh-dep.jpg") top center / cover no-repeat;
+
+}
+.clock{
+    display: grid;
+    grid-template-columns: 33.333% 33.333% 33.333%;
+    /* tí nữa nhớ chia lại tỉ lệ */
+    width: 500px;
+    height: 100px;
+    border-radius: 20px;
+    background-color: black;
+    margin: 0 auto;
+    margin-top: 80px;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    animation: discolour 7s linear infinite alternate ;
+}
+
+@keyframes discolour{
+    0%{
+        box-shadow: 0 0 5px 5px red;
+    }
+    33%{
+        box-shadow: 0 0 5px 5px yellow;
+    }
+    44%{
+        box-shadow: 0 0 5px 5px pink;
+    }
+    50%{
+        box-shadow: 0 0 5px 5px green;
+    }
+    80%{
+        box-shadow: 0 0 5px 5px purple;
+    }
+    100%{
+        box-shadow: 0 0 5px 5px blue;
+    }
+}
+
+.clock .time{
+    font-size: 80px;
+    color: white;
+    line-height: 100px;
+}
+
+.expand{
+    width: 100%;
+    height: 20px;
+}
+
+
+.dynamic-island{
+    position: relative;
+    width: 92px;
+    height: 25px;
+    background-color: black;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dynamic-island:hover{
+    animation:dynamic-island-move 0.3s linear forwards;
+}
+
+@keyframes dynamic-island-move{
+    0%{
+        padding: 0px;
+    }
+    44%{
+        padding: 25px 72px;
+    }
+    100%{
+        padding: 0px 120px;
+    }
+}
+
+
+.container > .exit{
+    display: none;
+}
+
+
+.in-function .icon{
+    display: none;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0px;
+    margin: 0px 10px;
+}
+
+
+.icon{
+    position: relative;
+}
+.in-function .input-time{
+    display: none;
+    position: absolute;
+    top: 78px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+
+.input-time input{
+    width: 92px;
+    height: 40px;
+    background-color: black;
+    color: orange;
+    font-weight: bold;
+    margin: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    border: none;
+}
+
+.input-time button{
+    background-color: rgba(10, 174, 251, 0.8);
+    color: white;
+    font-size: 14px;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin: 5px 10px;
+    border-radius: 50px;
+}
+
+.input-time button:hover{
+    opacity: 0.7;
+}
+
+.sound-in4{
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    width: 200px;
+    height: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .expand{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.expand .snooze{
+    background-color: black;
+    color: white;
+    padding: 5px 40px;
+    border-radius: 20px;
+    position: fixed;
+    top: 20px;
+}
+
+.expand .snooze:hover{
+    animation: dynamic-island 0.1s linear;
+    padding: 5px 80px;
+    background-color: black;
+}
+
+@keyframes dynamic-island{
+    0%{
+        padding: 5px 40px;
+    }
+    100%{
+        padding: 5px 80px;
+    }
+} */
